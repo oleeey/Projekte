@@ -9,12 +9,10 @@ function sumPrimes(num) {
       }
     }
   
-  
     for (let i = 2; i <= Math.sqrt(num); i += 1) {
       getSieve(i);
     }
-  
-  
+
     let sum = 0;
     if (num >= 2) {
       for (let i = 2; i <= num; i++) {
@@ -23,11 +21,7 @@ function sumPrimes(num) {
           sum += i;
         }
       }
-  
     }
-  
-  
-  
     return sum;
   }
   
