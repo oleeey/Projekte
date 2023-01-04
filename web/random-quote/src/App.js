@@ -1,18 +1,18 @@
 import './App.css';
 import {quotes} from './quotes.js';
 
+let index;
+
 const getIndex = () => {
-  let num = Math.round(Math.random()*quotes.length);
-  if (num == quotes.length) {
+  index = Math.round(Math.random()*quotes.length);
+  console.log(index);
+  if (index === quotes.length) {
     getIndex()
   }
-  console.log(num);
-  return num;
+  return index;
 }
 
 let quote = quotes[getIndex()];
-
-console.log();
 
 function App() {
   return (
