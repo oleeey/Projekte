@@ -9,12 +9,14 @@ os.chdir("./src/python/")
 
 
 list = re.findall(r'(class="quote">)(.+)(.</a>)', data, re.DOTALL)
+list2 = re.findall(r'(.html">)(.+)(\.</a>)', str(list), re.DOTALL)
+
 
 #list2 = re.findall(r'', list, re.DOTALL)
 
 
 f = open("rawtext.txt", "w")
-for i in list:
+for i in list2:
     f.writelines(str(i))
 f.close()
 
