@@ -1,28 +1,43 @@
 import './App.css';
 import {quotes} from './quotes.js';
+import React from 'react';
 
-let index;
-
-const getIndex = () => {
-  index = Math.round(Math.random()*quotes.length);
-  console.log(index);
-  if (index === quotes.length) {
-    getIndex()
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      quotesList: quotes,
+      quote: "",
+      author: ""
+    }
   }
-  return index;
-}
 
-let quote = quotes[getIndex()][0];
-let author = quotes[getIndex()][1];
+  getQuote() {
+    let index = Math.round(Math.random()*quotes.length);
+    if (index === quotes.length) {
+      this.getQuote()
+    }
+    else {
+      this.setState({
+        quote: this.state.quotesList[index][0],
+        author: this.state.quotesList[index][1]
+      })
+    }
+  }
 
-function App() {
-  return (
-    <div className="App" id='quote-box'>
-      <p id='text'>{quote}</p>
-      <p id="author">{author}</p>
-      <button id='new-quote'>New quote</button>
-    </div>
-  );
+  componentDidMount() {
+    this.getQuote();
+  }
+
+  render() {
+    return (
+      <div className="App" id='quote-box'>
+        <p id='text'>{this.state.quote}</p>
+        <p id="author">{this.state.author}</p>
+        <button id='new-quote' onClick={this.getQuote}>New quote</button>
+      </div>
+    );
+  }
 }
 
 
