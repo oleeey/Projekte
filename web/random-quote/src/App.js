@@ -12,12 +12,15 @@ const getIndex = () => {
   return index;
 }
 
-let quote = quotes[getIndex()];
+let quote = quotes[getIndex()][0];
+let author = quotes[getIndex()][1];
 
 function App() {
   return (
-    <div className="App">
-      <textfield>{quote}</textfield>
+    <div className="App" id='quote-box'>
+      <p id='text'>{quote}</p>
+      <p id="author">{author}</p>
+      <button id='new-quote'>New quote</button>
     </div>
   );
 }
