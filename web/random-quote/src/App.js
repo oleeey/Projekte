@@ -10,6 +10,7 @@ class App extends React.Component {
       quote: "",
       author: ""
     }
+    this.getQuote = this.getQuote.bind(this);
   }
 
   getQuote() {
