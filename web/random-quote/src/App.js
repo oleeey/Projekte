@@ -2,6 +2,8 @@ import './App.css';
 import {quotes} from './quotes.js';
 import React from 'react';
 
+
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -29,6 +31,7 @@ class App extends React.Component {
   componentDidMount() {
     this.getQuote();
   }
+
 
   render() {
     return (
