@@ -14,6 +14,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
+    box-shadow: 2px 2px black;
 
     // damit Element genau in der Mitte liegt (horizontal und vertikal)
     -ms-transform: translate(-50%, -50%);
