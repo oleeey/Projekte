@@ -5,7 +5,6 @@ export let quotes = [
     ["Ambition often puts men upon doing the meanest offices; so climbing is performed in the same posture with creeping.","Jonathan Swift"],
     ["To err is dysfunctional, to forgive co-dependent.","Berton Averre"],
     ["Delusions of grandeur make me feel a lot better about myself.","Jane Wagner"],
-    ["Well, spring sprang. We've had our state of grace and our little gift of sanctioned madness, courtesy of Mother Nature. Thanks, Gaia. Much obliged. I guess it's time to get back to that daily routine of living we like to call normal.","David Assael"],
     ["One man's folly is another man's wife.","Helen Rowland"],
     ["Toughness doesn't have to come in a pinstriped suit.","Senator Dianne Feinstein"],
     ["Equal opportunity means everyone will have a fair chance at being incompetent.","Laurence J. Peter"],
@@ -23,9 +22,7 @@ export let quotes = [
     ["He has all the virtues I dislike and none of the vices I admire.","Sir Winston Churchill"],
     ["His mother should have thrown him away and kept the stork.","Mae West"],
     ["I like persons better than principles, and I like persons with no principles better than anything else in the world.","Oscar Wilde"],
-    ["I wish you sunshine on your path and storms to season your journey. I wish you peace in the world in which you live... More I cannot wish you except perhaps love to make all the rest worthwhile.","Robert A. Ward"],
     ["Be brief, for no discourse can please when too long.","Miguel de Cervantes"],
-    ["The Army has carried the American ... ideal to its logical conclusion. Not only do they prohibit discrimination on the grounds of race, creed and color, but also on ability.","Tom Lehrer"],
     ["There are more fools in the world than there are people.","Heinrich Heine"],
     ["Happiness: a good bank account, a good cook and a good digestion.","Jean Jacques Rousseau"],
     ["It is never too late to give up our prejudices.","Henry David Thoreau"]
