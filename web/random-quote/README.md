@@ -7,7 +7,7 @@ Webseite, welche ein zufälliges Zitat darstellt.
 ## Benutze Werkzeuge:
 - HTML
 - CSS/SCSS
-- JS
+- JavaScript
 - React
 
 
