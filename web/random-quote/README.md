@@ -2,4 +2,4 @@
 ## Beschreibung:
 Webseite, welche ein zufälliges Zitat darstellt.
 
-https://media.giphy.com/media/7ZeQYkZth6DCbCZLdE/giphy.gif
+<iframe src="https://giphy.com/embed/7ZeQYkZth6DCbCZLdE" width="480" height="234" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/7ZeQYkZth6DCbCZLdE">via GIPHY</a></p>
