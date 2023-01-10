@@ -1,16 +1,5 @@
-# Random Quote Machine
-## Beschreibung:
-Webseite, welche ein zufälliges Zitat darstellt.
+## Youtube Downloader
 
-![giphy](https://user-images.githubusercontent.com/117094162/211635850-5b29aedb-6b1f-4e34-875c-6ffb33672e38.gif)
-
-## Benutze Werkzeuge:
-- HTML
-- CSS/SCSS
-- JavaScript
-- React
-
-
-## TODO:
-- Übergang zwischen Zitaten animieren
-
+# Beschreibung:
+Programm, mit welchem man Youtube-Videos herunterladen kann. Dabei kann man entweder eine .mp3 (Audio) oder eine .mp4 (Video) Datei herunterladen. Beim Video kann man 
+360p oder 720p Auflösung auswählen. Man kann auch auswählen, wo die Datei gespeichert werden sollte. Wenn man nichts angibt, wird es im Ordner gespeichert, wo das Programm ist.
