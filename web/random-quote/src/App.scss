@@ -1,3 +1,4 @@
+// für animierten Übergang, z.B. von Farbenwechsel
 @mixin transition ($x) {
     -webkit-transition: $x 1000ms linear;
     -ms-transition: $x 1000ms linear;
@@ -14,7 +15,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    box-shadow: 2px 2px black;
+    box-shadow: 1px 1px black;
 
     // damit Element genau in der Mitte liegt (horizontal und vertikal)
     -ms-transform: translate(-50%, -50%);
@@ -43,6 +44,7 @@ body {
     position: relative;
     float: right;
     border: none;
+    cursor: pointer;
 }
 
 #text {
@@ -83,4 +85,10 @@ nav {
     padding: 10px;
     height: inherit;
     border-radius: 3px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    right: 1%;
 }
