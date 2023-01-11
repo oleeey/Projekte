@@ -1,58 +1,35 @@
-const units = {
-    aboriginal: {
-        
-    },
-    african: {
 
-    },
-    anatolian: {
+const infList = ""
 
-    },
-    chinese: {
 
-    },
-    eastern: {
-
-    },
-    highAmerican: {
-
-    },
-    indian: {
-
-    },
-    muslim: {
-
-    },
-    nativeAmerican: {
-
-    },
-    mesoAmerican: {
-
-    },
-    northAmerican: {
-
-    },
-    southAmerican: {
-
-    },
-    nomad: {
-
-    },
-    polynesian: {
-
-    },
-    western: {
-
-    }
+function Unit(
+    milTech, 
+    unitGroup,
+    unitName,
+    fireOff,
+    fireDef,
+    shockOff,
+    shockDef,
+    moraleOff,
+    moraleDef,
+    total) {
+    
+        this.milTech = milTech;
+        this.unitGroup = unitGroup;
+        this.unitName = unitName;
+        this.fireOff = fireOff;
+        this.fireDef = fireDef;
+        this.shockOff = shockOff;
+        this.shockDef = shockDef;
+        this.moraleOff = moraleOff;
+        this.moraleDef = moraleDef;
+        this.total = total;
 }
 
-function Unit(fireOff, fireDef, shockOff, shockDef, moraleOff, moraleDef) {
-    this.fireOff = fireOff;
-    this.fireDef = fireDef;
-    this.shockOff = shockOff;
-    this.shockDef = shockDef;
-    this.moraleOff = moraleOff;
-    this.moraleDef = moraleDef;
-}
 
-let aboriginal = new Unit()
+
+
+
+
+
+
