@@ -1,19 +1,49 @@
 const units = {
-    aboriginal: "",
-    african: "",
-    anatolian: "",
-    chinese: "",
-    eastern: "",
-    highAmerican: "",
-    indian: "",
-    muslim: "",
-    nativeAmerican: "",
-    mesoAmerican: "",
-    northAmerican: "",
-    southAmerican: "",
-    nomad: "",
-    polynesian: "",
-    western: "",
+    aboriginal: {
+        
+    },
+    african: {
+
+    },
+    anatolian: {
+
+    },
+    chinese: {
+
+    },
+    eastern: {
+
+    },
+    highAmerican: {
+
+    },
+    indian: {
+
+    },
+    muslim: {
+
+    },
+    nativeAmerican: {
+
+    },
+    mesoAmerican: {
+
+    },
+    northAmerican: {
+
+    },
+    southAmerican: {
+
+    },
+    nomad: {
+
+    },
+    polynesian: {
+
+    },
+    western: {
+
+    }
 }
 
 function Unit(fireOff, fireDef, shockOff, shockDef, moraleOff, moraleDef) {
@@ -25,4 +55,4 @@ function Unit(fireOff, fireDef, shockOff, shockDef, moraleOff, moraleDef) {
     this.moraleDef = moraleDef;
 }
 
-console.log("hello");
+let aboriginal = new Unit()
