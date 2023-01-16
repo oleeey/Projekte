@@ -29,7 +29,7 @@ class Input extends React.Component {
         <form id='inputForm'>
           <div className='divSelect'>
             <label>Unit Group</label>
-            <select id="selectGroup" onChange={this.getUnitGroup}>
+            <select className='selectElem' onChange={this.getUnitGroup}>
               <option selected disabled>-</option>
               <option>Aboriginal</option>
               <option>African</option>
@@ -49,13 +49,13 @@ class Input extends React.Component {
           </div>
           <div className='divSelect'>
             <label>Military Technology</label>
-            <select id="selectTech" onChange={this.getUnitList}>
+            <select className='selectElem' onChange={this.getUnitList}>
               {techOptions}
             </select>
           </div>
           <div className='divSelect'>
             <label>Unit Name</label>
-            <select id="selectUnit" onChange={this.getUnitName}>
+            <select className='selectElem' onChange={this.getUnitName}>
               {unitOptions}
             </select>
           </div>
@@ -80,16 +80,19 @@ class Stats extends React.Component {
     };
 
     getStats() {
+        console.log("ok")
         for (let i in this.props.data["recordset"]) {
-            if (this.props.data["recordset"][i]["Unit_group"] == this.props.unitGroup && this.props.data["recordset"][i]["Tech_Group"] == this.props.techGroup) {
-                console.log()
+            if (this.props.data["recordset"][i]["Name"] == this.props.unitName) {
+                //console.log(this.props.data["recordset"][i])
             }
         }
     };
 
+    componentDidMount() {
+        this.getStats();
+    }
+
     render() {
-        //console.log(this.props.unitName)
-        this.getStats()
         return (
             <table>
                 
