@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react';
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -97,30 +98,40 @@ class App extends React.Component {
     return (
     <div className="App">
       <h1>EU4 Unit Compare</h1>
-      <select id="selectGroup" onChange={this.getUnitGroup}>
-        <option selected disabled>-</option>
-        <option>Aboriginal</option>
-        <option>African</option>
-        <option>Anatolian</option>
-        <option>Chinese</option>
-        <option>Eastern</option>
-        <option>High American</option>
-        <option>Indian</option>
-        <option>Muslim</option>
-        <option>Mesoamerican</option>
-        <option>North American</option>
-        <option>South American</option>
-        <option>Nomad</option>
-        <option>Polynesian</option>
-        <option>Western</option>
-      </select>
-      <select id="selectTech" onChange={this.getUnitList}>
-        {techOption}
-      </select>
-      <select id="selectUnit">
-        {unitOption}
-      </select>
-
+      <form id='inputForm'>
+        <div className='divSelect'>
+          <label>Unit Group</label>
+          <select id="selectGroup" onChange={this.getUnitGroup}>
+            <option selected disabled>-</option>
+            <option>Aboriginal</option>
+            <option>African</option>
+            <option>Anatolian</option>
+            <option>Chinese</option>
+            <option>Eastern</option>
+            <option>High American</option>
+            <option>Indian</option>
+            <option>Muslim</option>
+            <option>Mesoamerican</option>
+            <option>North American</option>
+            <option>South American</option>
+            <option>Nomad</option>
+            <option>Polynesian</option>
+            <option>Western</option>
+          </select>
+        </div>
+        <div className='divSelect'>
+          <label>Military Technology</label>
+          <select id="selectTech" onChange={this.getUnitList}>
+            {techOption}
+          </select>
+        </div>
+        <div className='divSelect'>
+          <label>Unit Name</label>
+          <select id="selectUnit">
+            {unitOption}
+          </select>
+        </div>
+      </form>
     </div>
     )
   }

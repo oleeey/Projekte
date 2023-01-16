@@ -4,3 +4,14 @@
     padding: 20px;
     height: 500px;
 }
+
+#inputForm {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.divSelect {
+    display: flex;
+    flex-direction: column;
+}
