@@ -3,74 +3,22 @@ import React from 'react';
 class Input extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {
-        isLoaded: false,
-        unitGroup: "",
-        techList: [],
-        unitList: []
-      };
       this.getUnitGroup = this.getUnitGroup.bind(this);
-      this.getTechList = this.getTechList.bind(this);
       this.getUnitList = this.getUnitList.bind(this);
     }
-  
+
     getUnitGroup(e) {
-      this.setState({unitGroup: e.target.value, techList: []}, function () {
-        this.getTechList();
-      });
-    }
-  
-    getTechList() {
-      //console.log("selected:",this.state.unitGroup)
-      let tech = [];
-        for (let i in this.props.data["recordset"]) {
-          if (this.props.data["recordset"][i]["Unit_group"] == this.state.unitGroup) {
-            //console.log(this.props.data["recordset"][i])
-            tech.push(this.props.data["recordset"][i]["Mil_Tech"]);       
-          }
-        }
-        tech = [...new Set(tech)]
-        this.setState({
-          techList: tech
-        }, function () {
-            let units = [];
-            let num = this.state.techList[0];
-            for (let i in this.props.data["recordset"]) {
-              if (this.props.data["recordset"][i]["Unit_group"] == this.state.unitGroup & this.props.data["recordset"][i]["Mil_Tech"] == num) {
-                units.push(this.props.data["recordset"][i]["Name"])
-              };
-            };
-            this.setState({
-              unitList: units
-            }, function () {
-              //console.log(this.state.unitList)
-            });
-        })
-    }
-  
+        this.props.getUnitGroup(e.target.value);
+      }
+
     getUnitList(e) {
-      // Erstellung der Liste, in welcher die Daten temporaer gespeichert werden
-      let units = [];
-      // ausgewählte Zahl benutzen
-      let num = e.target.value;
-      // durch die Liste gehen und wenn die ausgewählte Gruppe und Technologie stimmen, dann speichern
-      for (let i in this.props.data["recordset"]) {
-        if (this.props.data["recordset"][i]["Unit_group"] == this.state.unitGroup & this.props.data["recordset"][i]["Mil_Tech"] == num) {
-          units.push(this.props.data["recordset"][i]["Name"])
-        };
-      };
-      this.setState({
-        unitList: units
-      }, function () {
-        //console.log(this.state.unitList)
-      });
-      
+        this.props.getUnitList(e.target.value);
     }
   
     render() {
       // Optionen anhand der gespeicherten Liste erstellen
-      let techOption = this.state.techList.map(item => <option key={item}>{item}</option>);
-      let unitOption = this.state.unitList.map(item => <option key={item}>{item}</option>);
+      let techOptions = this.props.techList.map(item => <option key={item}>{item}</option>);
+      let unitOptions = this.props.unitList.map(item => <option key={item}>{item}</option>);
     
       return (
         <form id='inputForm'>
@@ -97,13 +45,13 @@ class Input extends React.Component {
           <div className='divSelect'>
             <label>Military Technology</label>
             <select id="selectTech" onChange={this.getUnitList}>
-              {techOption}
+              {techOptions}
             </select>
           </div>
           <div className='divSelect'>
             <label>Unit Name</label>
             <select id="selectUnit">
-              {unitOption}
+              {unitOptions}
             </select>
           </div>
         </form>
@@ -129,7 +77,6 @@ class Stats extends React.Component {
     getStats() {
         for (let i in this.props.data["recordset"]) {
             if (this.props.data["recordset"][i]["Unit_group"] == this.props.unitGroup) {
-
             }
         }
     };
@@ -148,15 +95,81 @@ class Infantry extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        
+        unitGroup: "",
+        techList: [],
+        unitList: []
       }
+      this.getTechList = this.getTechList.bind(this);
+      this.getUnitList = this.getUnitList.bind(this);
+      this.getUnitGroup = this.getUnitGroup.bind(this);
+    }
+
+    getUnitGroup(e) {
+        this.setState({unitGroup: e, techList: []}, function () {
+          this.getTechList();
+        });
+      }
+
+    getTechList() {
+        //console.log("selected:",this.state.unitGroup)
+        let tech = [];
+        for (let i in this.props.data["recordset"]) {
+            if (this.props.data["recordset"][i]["Unit_group"] == this.state.unitGroup) {
+                //console.log(this.props.data["recordset"][i])
+                tech.push(this.props.data["recordset"][i]["Mil_Tech"]);       
+            }
+        }
+        tech = [...new Set(tech)]
+        this.setState({
+        techList: tech
+        }, function () {
+            let units = [];
+            let num = this.state.techList[0];
+            for (let i in this.props.data["recordset"]) {
+            if (this.props.data["recordset"][i]["Unit_group"] == this.state.unitGroup & this.props.data["recordset"][i]["Mil_Tech"] == num) {
+                units.push(this.props.data["recordset"][i]["Name"])
+            };
+            };
+            this.setState({
+            unitList: units
+            }, function () {
+            //console.log(this.state.unitList)
+            });
+        })
+    }
+
+    getUnitList(e) {
+        // Erstellung der Liste, in welcher die Daten temporaer gespeichert werden
+        let units = [];
+        // ausgewählte Zahl benutzen
+        let num = e;
+        // durch die Liste gehen und wenn die ausgewählte Gruppe und Technologie stimmen, dann speichern
+        for (let i in this.props.data["recordset"]) {
+            if (this.props.data["recordset"][i]["Unit_group"] == this.state.unitGroup & this.props.data["recordset"][i]["Mil_Tech"] == num) {
+            units.push(this.props.data["recordset"][i]["Name"])
+            };
+        };
+        this.setState({
+            unitList: units
+        }, function () {
+            //console.log(this.state.unitList)
+        });
+        
     }
       
     render() {
+        let props = {
+            data: this.props.data,
+            unitGroup: this.state.unitGroup,
+            techList: this.state.techList,
+            unitList: this.state.unitList,
+            getUnitGroup: this.getUnitGroup,
+            getUnitList: this.getUnitList
+        }
       return (
         <div className='Infantry'>
-            <Input data={this.props.data}/>
-            <Stats data={this.props.data}/>
+            <Input {...props}/>
+            <Stats {...props}/>
         </div>
       )
     }
