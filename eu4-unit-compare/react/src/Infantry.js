@@ -135,10 +135,25 @@ class Input extends React.Component {
 class Stats extends React.Component {
     constructor(props) {
         super(props);
-    }
+        this.state = {
+            fireOff: 0,
+            fireDef: 0,
+            shockOff: 0,
+            shockDef: 0,
+            moraleOff: 0,
+            moraleDef: 0,
+            total: 0
+        };
+        this.getStats = this.getStats.bind(this)
+    };
+
+    getStats() {
+        console.log(this.props.data)
+    };
 
     
     render() {
+        this.getStats()
         return (
             <table>
                 
