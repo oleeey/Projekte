@@ -4,7 +4,6 @@ class Input extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        data: [],
         isLoaded: false,
         unitGroup: "",
         techList: [],
@@ -22,12 +21,12 @@ class Input extends React.Component {
     }
   
     getTechList() {
-      console.log("selected:",this.state.unitGroup)
+      //console.log("selected:",this.state.unitGroup)
       let tech = [];
-        for (let i in this.state.data["recordset"]) {
-          if (this.state.data["recordset"][i]["Unit_group"] == this.state.unitGroup) {
-            console.log(this.state.data["recordset"][i])
-            tech.push(this.state.data["recordset"][i]["Mil_Tech"]);       
+        for (let i in this.props.data["recordset"]) {
+          if (this.props.data["recordset"][i]["Unit_group"] == this.state.unitGroup) {
+            console.log(this.props.data["recordset"][i])
+            tech.push(this.props.data["recordset"][i]["Mil_Tech"]);       
           }
         }
         tech = [...new Set(tech)]
@@ -36,9 +35,9 @@ class Input extends React.Component {
         }, function () {
             let units = [];
             let num = this.state.techList[0];
-            for (let i in this.state.data["recordset"]) {
-              if (this.state.data["recordset"][i]["Unit_group"] == this.state.unitGroup & this.state.data["recordset"][i]["Mil_Tech"] == num) {
-                units.push(this.state.data["recordset"][i]["Name"])
+            for (let i in this.props.data["recordset"]) {
+              if (this.props.data["recordset"][i]["Unit_group"] == this.state.unitGroup & this.props.data["recordset"][i]["Mil_Tech"] == num) {
+                units.push(this.props.data["recordset"][i]["Name"])
               };
             };
             this.setState({
@@ -55,9 +54,9 @@ class Input extends React.Component {
       // ausgewählte Zahl benutzen
       let num = e.target.value;
       // durch die Liste gehen und wenn die ausgewählte Gruppe und Technologie stimmen, dann speichern
-      for (let i in this.state.data["recordset"]) {
-        if (this.state.data["recordset"][i]["Unit_group"] == this.state.unitGroup & this.state.data["recordset"][i]["Mil_Tech"] == num) {
-          units.push(this.state.data["recordset"][i]["Name"])
+      for (let i in this.props.data["recordset"]) {
+        if (this.props.data["recordset"][i]["Unit_group"] == this.state.unitGroup & this.props.data["recordset"][i]["Mil_Tech"] == num) {
+          units.push(this.props.data["recordset"][i]["Name"])
         };
       };
       this.setState({
@@ -66,26 +65,6 @@ class Input extends React.Component {
         console.log(this.state.unitList)
       });
       
-    }
-  
-    // Verbindung mit dem Express Server
-    componentDidMount() {
-      fetch("http://localhost:5000/units")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          //console.log(result);
-          this.setState({
-            data:result,
-            isLoaded: true
-          });
-        },
-        (error) => {
-          this.setState({
-            error
-          });
-        }
-      )
     }
   
     render() {
@@ -137,7 +116,6 @@ class Stats extends React.Component {
         super(props);
     }
 
-    
     render() {
         return (
             <table>
@@ -147,8 +125,6 @@ class Stats extends React.Component {
     }
 }
 
-
-
 class Infantry extends React.Component {
     constructor(props) {
       super(props);
@@ -157,8 +133,8 @@ class Infantry extends React.Component {
     render() {
       return (
         <div className='Infantry'>
-            <Input />
-            <Stats />
+            <Input data={this.props.data}/>
+            <Stats data={this.props.data}/>
         </div>
       )
     }
