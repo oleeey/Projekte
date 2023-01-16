@@ -25,7 +25,7 @@ class Input extends React.Component {
       let tech = [];
         for (let i in this.props.data["recordset"]) {
           if (this.props.data["recordset"][i]["Unit_group"] == this.state.unitGroup) {
-            console.log(this.props.data["recordset"][i])
+            //console.log(this.props.data["recordset"][i])
             tech.push(this.props.data["recordset"][i]["Mil_Tech"]);       
           }
         }
@@ -43,7 +43,7 @@ class Input extends React.Component {
             this.setState({
               unitList: units
             }, function () {
-              console.log(this.state.unitList)
+              //console.log(this.state.unitList)
             });
         })
     }
@@ -62,7 +62,7 @@ class Input extends React.Component {
       this.setState({
         unitList: units
       }, function () {
-        console.log(this.state.unitList)
+        //console.log(this.state.unitList)
       });
       
     }
@@ -127,7 +127,11 @@ class Stats extends React.Component {
     };
 
     getStats() {
-        console.log(this.props.data)
+        for (let i in this.props.data["recordset"]) {
+            if (this.props.data["recordset"][i]["Unit_group"] == this.props.unitGroup) {
+
+            }
+        }
     };
 
     render() {
@@ -143,6 +147,9 @@ class Stats extends React.Component {
 class Infantry extends React.Component {
     constructor(props) {
       super(props);
+      this.state = {
+        
+      }
     }
       
     render() {
