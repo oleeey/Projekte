@@ -5,6 +5,7 @@ class Input extends React.Component {
       super(props);
       this.getUnitGroup = this.getUnitGroup.bind(this);
       this.getUnitList = this.getUnitList.bind(this);
+      this.getUnitName = this.getUnitName.bind(this);
     }
 
     getUnitGroup(e) {
@@ -13,6 +14,10 @@ class Input extends React.Component {
 
     getUnitList(e) {
         this.props.getUnitList(e.target.value);
+    }
+
+    getUnitName(e) {
+        this.props.getUnitName(e.target.value);
     }
   
     render() {
@@ -50,7 +55,7 @@ class Input extends React.Component {
           </div>
           <div className='divSelect'>
             <label>Unit Name</label>
-            <select id="selectUnit">
+            <select id="selectUnit" onChange={this.getUnitName}>
               {unitOptions}
             </select>
           </div>
@@ -76,12 +81,14 @@ class Stats extends React.Component {
 
     getStats() {
         for (let i in this.props.data["recordset"]) {
-            if (this.props.data["recordset"][i]["Unit_group"] == this.props.unitGroup) {
+            if (this.props.data["recordset"][i]["Unit_group"] == this.props.unitGroup && this.props.data["recordset"][i]["Tech_Group"] == this.props.techGroup) {
+                console.log()
             }
         }
     };
 
     render() {
+        //console.log(this.props.unitName)
         this.getStats()
         return (
             <table>
@@ -96,12 +103,14 @@ class Infantry extends React.Component {
       super(props);
       this.state = {
         unitGroup: "",
+        unitName: "",
         techList: [],
         unitList: []
       }
       this.getTechList = this.getTechList.bind(this);
       this.getUnitList = this.getUnitList.bind(this);
       this.getUnitGroup = this.getUnitGroup.bind(this);
+      this.getUnitName = this.getUnitName.bind(this);
     }
 
     getUnitGroup(e) {
@@ -109,6 +118,12 @@ class Infantry extends React.Component {
           this.getTechList();
         });
       }
+
+    getUnitName(e) {
+        this.setState({
+            unitName: e
+        });
+    }
 
     getTechList() {
         //console.log("selected:",this.state.unitGroup)
@@ -133,7 +148,7 @@ class Infantry extends React.Component {
             this.setState({
             unitList: units
             }, function () {
-            //console.log(this.state.unitList)
+                this.getUnitName(this.state.unitList[0]);
             });
         })
     }
@@ -145,26 +160,27 @@ class Infantry extends React.Component {
         let num = e;
         // durch die Liste gehen und wenn die ausgewählte Gruppe und Technologie stimmen, dann speichern
         for (let i in this.props.data["recordset"]) {
-            if (this.props.data["recordset"][i]["Unit_group"] == this.state.unitGroup & this.props.data["recordset"][i]["Mil_Tech"] == num) {
+            if (this.props.data["recordset"][i]["Unit_group"] == this.state.unitGroup && this.props.data["recordset"][i]["Mil_Tech"] == num) {
             units.push(this.props.data["recordset"][i]["Name"])
             };
         };
         this.setState({
             unitList: units
         }, function () {
-            //console.log(this.state.unitList)
+            this.getUnitName(this.state.unitList[0]);
         });
-        
     }
       
     render() {
         let props = {
             data: this.props.data,
             unitGroup: this.state.unitGroup,
-            techList: this.state.techList,
-            unitList: this.state.unitList,
             getUnitGroup: this.getUnitGroup,
-            getUnitList: this.getUnitList
+            getUnitList: this.getUnitList,
+            getUnitName: this.getUnitName,
+            unitList: this.state.unitList,
+            unitName: this.state.unitName,
+            techList: this.state.techList,
         }
       return (
         <div className='Infantry'>
