@@ -17,9 +17,9 @@ class App extends React.Component {
     .then(res => res.json())
     .then(
       (result) => {
-        //console.log(result);
+        console.log(result.data[1]);
         this.setState({
-          data:result
+          data:result.data
         });
       },
       (error) => {
