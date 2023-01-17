@@ -80,7 +80,6 @@ class Stats extends React.Component {
     };
 
     getStats() {
-        console.log("ok")
         for (let i in this.props.data["recordset"]) {
             if (this.props.data["recordset"][i]["Name"] == this.props.unitName) {
                 //console.log(this.props.data["recordset"][i])
@@ -131,10 +130,10 @@ class Infantry extends React.Component {
     getTechList() {
         //console.log("selected:",this.state.unitGroup)
         let tech = [];
-        for (let i in this.props.data["recordset"]) {
-            if (this.props.data["recordset"][i]["Unit_group"] == this.state.unitGroup) {
+        for (let i in this.props.data) {
+            if (this.props.data[i][1] == this.state.unitGroup) {
                 //console.log(this.props.data["recordset"][i])
-                tech.push(this.props.data["recordset"][i]["Mil_Tech"]);       
+                tech.push(this.props.data[i][0]);       
             }
         }
         tech = [...new Set(tech)]
@@ -143,9 +142,9 @@ class Infantry extends React.Component {
         }, function () {
             let units = [];
             let num = this.state.techList[0];
-            for (let i in this.props.data["recordset"]) {
-            if (this.props.data["recordset"][i]["Unit_group"] == this.state.unitGroup & this.props.data["recordset"][i]["Mil_Tech"] == num) {
-                units.push(this.props.data["recordset"][i]["Name"])
+            for (let i in this.props.data) {
+            if (this.props.data[i][1] == this.state.unitGroup & this.props.data[i][0] == num) {
+                units.push(this.props.data[i][2])
             };
             };
             this.setState({
@@ -162,9 +161,9 @@ class Infantry extends React.Component {
         // ausgewählte Zahl benutzen
         let num = e;
         // durch die Liste gehen und wenn die ausgewählte Gruppe und Technologie stimmen, dann speichern
-        for (let i in this.props.data["recordset"]) {
-            if (this.props.data["recordset"][i]["Unit_group"] == this.state.unitGroup && this.props.data["recordset"][i]["Mil_Tech"] == num) {
-            units.push(this.props.data["recordset"][i]["Name"])
+        for (let i in this.props.data) {
+            if (this.props.data[i][1] == this.state.unitGroup && this.props.data[i][0] == num) {
+            units.push(this.props.data[i][2])
             };
         };
         this.setState({

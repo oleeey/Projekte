@@ -7,7 +7,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      infData: []
     }
   };
 
@@ -17,9 +17,12 @@ class App extends React.Component {
     .then(res => res.json())
     .then(
       (result) => {
-        console.log(result.data[1]);
+        result.data.shift();
+        let newData = [];
+        result.data.map(item => newData.push(String(item).split(";")))
+        
         this.setState({
-          data:result.data
+          infData: newData
         });
       },
       (error) => {
@@ -34,7 +37,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>EU4 Unit Compare</h1>
-        <Infantry data={this.state.data}/>
+        <Infantry data={this.state.infData}/>
       </div>
     )
   }
