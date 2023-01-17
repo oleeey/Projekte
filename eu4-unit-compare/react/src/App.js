@@ -13,7 +13,7 @@ class App extends React.Component {
 
   // Verbindung mit dem Express Server
   componentDidMount() {
-    fetch("http://192.168.178.69:5000/units")
+    fetch("http://localhost:5000/units")
     .then(res => res.json())
     .then(
       (result) => {
