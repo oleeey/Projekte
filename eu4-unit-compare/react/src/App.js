@@ -11,9 +11,9 @@ class App extends React.Component {
     }
   };
 
-  // Verbindung mit dem Express Server
+  // Verbindung mit dem Express Server, Daten anpassen für Anwendung
   componentDidMount() {
-    fetch("http://localhost:5000/units")
+    fetch("http://localhost:5000/inf")
     .then(res => res.json())
     .then(
       (result) => {
