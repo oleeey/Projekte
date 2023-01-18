@@ -75,14 +75,15 @@ class Stats extends React.Component {
             moraleOff: 0,
             moraleDef: 0,
             total: 0,
+            statsList: []
         };
         this.getStats = this.getStats.bind(this)
     };
 
     getStats() {
-      console.log("hello")
         for (let i in this.props.data) {
             if (this.props.data[i][2] == this.props.unitName) {
+              //console.log(this.props.data[i])
                 this.setState({
                   fireOff: Number(this.props.data[i][3]),
                   fireDef: Number(this.props.data[i][4]),
@@ -91,17 +92,50 @@ class Stats extends React.Component {
                   moraleOff: Number(this.props.data[i][7]),
                   moraleDef: Number(this.props.data[i][8]),
                   total: Number(this.props.data[i][9])
+                }, function() {
+                  this.setState({
+                    statsList: [this.state.fireOff, this.state.fireDef, this.state.shockOff, this.state.shockDef,this.state.moraleOff,this.state.moraleDef,this.state.total]
+                  }, function() {
+                    console.log(this.state.statsList)
+                  });
                 })
             }
         }
     };
 
+    shouldComponentUpdate(nextProps) {
+      if (nextProps.unitName !== this.props.unitName) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+
+    componentDidUpdate() { 
+      this.getStats();
+    }
+
+    
+
     render() {
-      
+      let statsList = ["Fire Off", "Fire Def", "Shock Off", "Shock Def", "Morale Off", "Morale Def", "Total"];
+      let stats = statsList.map(item => <td key={item}>{item}</td>)
+      let stats2 = this.state.statsList.map(item => <td key={item + Math.random()}>{item}</td>)
+  
         return (
+          <div className='table'>
             <table>
-                
+              <tbody>
+                <tr>
+                  {stats}
+                </tr>
+                <tr>
+                  {stats2}
+                </tr>
+              </tbody>
             </table>
+          </div>
         )
     }
 }
@@ -142,6 +176,7 @@ class Infantry extends React.Component {
                 tech.push(this.props.data[i][0]);       
             }
         }
+        // Duplikate entfernen
         tech = [...new Set(tech)]
         this.setState({
         techList: tech
