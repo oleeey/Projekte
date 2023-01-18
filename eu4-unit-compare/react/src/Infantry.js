@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 class Input extends React.Component {
     constructor(props) {
@@ -96,14 +96,14 @@ class Stats extends React.Component {
                   this.setState({
                     statsList: [this.state.fireOff, this.state.fireDef, this.state.shockOff, this.state.shockDef,this.state.moraleOff,this.state.moraleDef,this.state.total]
                   }, function() {
-                    console.log(this.state.statsList)
+                      
                   });
                 })
             }
         }
     };
 
-    shouldComponentUpdate(nextProps) {
+    shouldComponentUpdate(nextProps, nextState) {
       if (nextProps.unitName !== this.props.unitName) {
         return true;
       }
@@ -115,7 +115,6 @@ class Stats extends React.Component {
     componentDidUpdate() { 
       this.getStats();
     }
-
     
 
     render() {
