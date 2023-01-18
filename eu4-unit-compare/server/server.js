@@ -18,14 +18,15 @@ function getData(name) {
                             data
                         })
                     }));
+
+                    app.get('/', function (req, res) {
+                        
+                    });
 }
 
 let units = ["inf", "cav", "art"];
 getData("inf")
 
-app.get('/', function (req, res) {
-
-});
 
 var server = app.listen(5000, function () {
     console.log('Server is running..');

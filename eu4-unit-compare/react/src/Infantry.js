@@ -74,24 +74,30 @@ class Stats extends React.Component {
             shockDef: 0,
             moraleOff: 0,
             moraleDef: 0,
-            total: 0
+            total: 0,
         };
         this.getStats = this.getStats.bind(this)
     };
 
     getStats() {
-        for (let i in this.props.data["recordset"]) {
-            if (this.props.data["recordset"][i]["Name"] == this.props.unitName) {
-                //console.log(this.props.data["recordset"][i])
+      console.log("hello")
+        for (let i in this.props.data) {
+            if (this.props.data[i][2] == this.props.unitName) {
+                this.setState({
+                  fireOff: Number(this.props.data[i][3]),
+                  fireDef: Number(this.props.data[i][4]),
+                  shockOff: Number(this.props.data[i][5]),
+                  shockDef: Number(this.props.data[i][6]),
+                  moraleOff: Number(this.props.data[i][7]),
+                  moraleDef: Number(this.props.data[i][8]),
+                  total: Number(this.props.data[i][9])
+                })
             }
         }
     };
 
-    componentDidMount() {
-        this.getStats();
-    }
-
     render() {
+      
         return (
             <table>
                 
@@ -107,7 +113,7 @@ class Infantry extends React.Component {
         unitGroup: "",
         unitName: "",
         techList: [],
-        unitList: []
+        unitList: [],
       }
       this.getTechList = this.getTechList.bind(this);
       this.getUnitList = this.getUnitList.bind(this);
