@@ -1,3 +1,4 @@
+import { waitFor } from '@testing-library/react';
 import React, { Component } from 'react';
 
 class Input extends React.Component {
@@ -75,10 +76,12 @@ class Stats extends React.Component {
             moraleOff: 0,
             moraleDef: 0,
             total: 0,
-            statsList: []
+            statsList: [],
         };
         this.getStats = this.getStats.bind(this)
     };
+
+  
 
     getStats() {
         for (let i in this.props.data) {
@@ -96,8 +99,8 @@ class Stats extends React.Component {
                   this.setState({
                     statsList: [this.state.fireOff, this.state.fireDef, this.state.shockOff, this.state.shockDef,this.state.moraleOff,this.state.moraleDef,this.state.total]
                   }, function() {
-                      
-                  });
+
+                  })
                 })
             }
         }
@@ -112,30 +115,30 @@ class Stats extends React.Component {
       }
     }
 
+    
     componentDidUpdate() { 
       this.getStats();
     }
     
-
     render() {
       let statsList = ["Fire Off", "Fire Def", "Shock Off", "Shock Def", "Morale Off", "Morale Def", "Total"];
       let stats = statsList.map(item => <td key={item}>{item}</td>)
       let stats2 = this.state.statsList.map(item => <td key={item + Math.random()}>{item}</td>)
   
-        return (
-          <div className='table'>
-            <table>
-              <tbody>
-                <tr>
-                  {stats}
-                </tr>
-                <tr>
-                  {stats2}
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        )
+      return (
+        <div className='table'>
+          <table>
+            <tbody>
+              <tr>
+                {stats}
+              </tr>
+              <tr>
+                {stats2}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )
     }
 }
 
