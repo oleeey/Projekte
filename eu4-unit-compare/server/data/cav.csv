@@ -72,11 +72,21 @@
 23;Muslim;Muslim Dragoon;1;2;3;4;3;4;17
 28;Muslim;Durrani Cavalry;2;1;5;3;4;4;19
 28;Muslim;Durrani Swivel Cavalry;1;2;4;5;4;3;19
-6;Native American;North American Horsemen;0;0;2;1;1;1;5
-10;Native American;North American Cavalry;0;1;3;2;2;2;10
-14;Native American;North American Hussar;1;1;3;2;3;2;12
-19;Native American;North American Swarm Cavalry;1;2;3;3;3;2;14
-23;Native American;North American Dragoon;2;2;3;3;4;4;18
+6;North American;North American Horsemen;0;0;2;1;1;1;5
+10;North American;North American Cavalry;0;1;3;2;2;2;10
+14;North American;North American Hussar;1;1;3;2;3;2;12
+19;North American;North American Swarm Cavalry;1;2;3;3;3;2;14
+23;North American;North American Dragoon;2;2;3;3;4;4;18
+6;South American;North American Horsemen;0;0;2;1;1;1;5
+10;South American;North American Cavalry;0;1;3;2;2;2;10
+14;South American;North American Hussar;1;1;3;2;3;2;12
+19;South American;North American Swarm Cavalry;1;2;3;3;3;2;14
+23;South American;North American Dragoon;2;2;3;3;4;4;18
+6;Mesoamerican;North American Horsemen;0;0;2;1;1;1;5
+10;Mesoamerican;North American Cavalry;0;1;3;2;2;2;10
+14;Mesoamerican;North American Hussar;1;1;3;2;3;2;12
+19;Mesoamerican;North American Swarm Cavalry;1;2;3;3;3;2;14
+23;Mesoamerican;North American Dragoon;2;2;3;3;4;4;18
 1;Nomad;Eastern Steppe Cavalry;0;0;1;1;2;2;6
 1;Nomad;Eastern Swarm Cavalry;0;0;2;1;2;1;6
 10;Nomad;Steppe Riders;0;0;3;2;3;2;10
