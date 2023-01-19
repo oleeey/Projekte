@@ -6,6 +6,11 @@ class Input extends React.Component {
       this.getUnitGroup = this.getUnitGroup.bind(this);
       this.getUnitList = this.getUnitList.bind(this);
       this.getUnitName = this.getUnitName.bind(this);
+      this.getUnitType = this.getUnitType.bind(this);
+    }
+
+    getUnitType(e) {
+      this.props.getUnitType(e.target.value)
     }
 
     getUnitGroup(e) {
@@ -27,6 +32,14 @@ class Input extends React.Component {
     
       return (
         <form id='inputForm'>
+          <div className='divSelect'>
+            <label>Unit Type</label>
+            <select className='selectElem' onChange={this.getUnitType}>
+              <option selected disabled>-</option>
+              <option value={"inf"}>Infantry</option>
+              <option value={"cav"}>Cavalry</option>
+            </select>
+          </div>
           <div className='divSelect'>
             <label>Unit Group</label>
             <select className='selectElem' onChange={this.getUnitGroup}>
@@ -72,13 +85,25 @@ class Unit extends React.Component {
         unitName: "",
         techList: [],
         unitList: [],
-        statsList: []
+        statsList: [],
+        unitType: ""
       }
       this.getTechList = this.getTechList.bind(this);
       this.getUnitList = this.getUnitList.bind(this);
       this.getUnitGroup = this.getUnitGroup.bind(this);
       this.getUnitName = this.getUnitName.bind(this);
       this.getStats = this.getStats.bind(this);
+      this.getUnitType = this.getUnitType.bind(this);
+    }
+
+    getUnitType(unitType) {
+      this.setState({
+        unitType: unitType
+      }, function() {
+        if (this.state.unitGroup !== "") {
+          this.getUnitGroup(this.state.unitGroup);
+        }
+      })
     }
 
     getUnitGroup(e) {
@@ -95,13 +120,19 @@ class Unit extends React.Component {
         });
     }
 
+    /*
+    Ich habe "this.props.data" überall durch "[`${this.state.unitType}Data`]" ersetzt, 
+    damit die Daten vom ausgewählten "Unit Type" abhängen.
+    Man kann also entweder "Infantry" oder "Cavalry" auswählen.
+    */
+
     getTechList() {
         //console.log("selected:",this.state.unitGroup)
         let tech = [];
-        for (let i in this.props.data) {
-            if (this.props.data[i][1] == this.state.unitGroup) {
+        for (let i in this.props[`${this.state.unitType}Data`]) {
+            if (this.props[`${this.state.unitType}Data`][i][1] == this.state.unitGroup) {
                 //console.log(this.props.data["recordset"][i])
-                tech.push(this.props.data[i][0]);       
+                tech.push(this.props[`${this.state.unitType}Data`][i][0]);       
             }
         }
         // Duplikate entfernen
@@ -111,9 +142,9 @@ class Unit extends React.Component {
         }, function () {
             let units = [];
             let num = this.state.techList[0];
-            for (let i in this.props.data) {
-            if (this.props.data[i][1] == this.state.unitGroup & this.props.data[i][0] == num) {
-                units.push(this.props.data[i][2])
+            for (let i in this.props[`${this.state.unitType}Data`]) {
+            if (this.props[`${this.state.unitType}Data`][i][1] == this.state.unitGroup & this.props[`${this.state.unitType}Data`][i][0] == num) {
+                units.push(this.props[`${this.state.unitType}Data`][i][2])
             };
             };
             this.setState({
@@ -130,9 +161,9 @@ class Unit extends React.Component {
         // ausgewählte Zahl benutzen
         let num = e;
         // durch die Liste gehen und wenn die ausgewählte Gruppe und Technologie stimmen, dann speichern
-        for (let i in this.props.data) {
-            if (this.props.data[i][1] == this.state.unitGroup && this.props.data[i][0] == num) {
-            units.push(this.props.data[i][2])
+        for (let i in this.props[`${this.state.unitType}Data`]) {
+            if (this.props[`${this.state.unitType}Data`][i][1] == this.state.unitGroup && this.props[`${this.state.unitType}Data`][i][0] == num) {
+            units.push(this.props[`${this.state.unitType}Data`][i][2])
             };
         };
         this.setState({
@@ -143,18 +174,18 @@ class Unit extends React.Component {
     }
 
     getStats() {
-      for (let i in this.props.data) {
-          if (this.props.data[i][2] == this.state.unitName) {
-            console.log(this.props.data[i])
+      for (let i in this.props[`${this.state.unitType}Data`]) {
+          if (this.props[`${this.state.unitType}Data`][i][2] == this.state.unitName) {
+            console.log(this.props[`${this.state.unitType}Data`][i])
               this.setState({
                 statsList: [
-                  this.props.data[i][3],
-                  this.props.data[i][4], 
-                  this.props.data[i][5], 
-                  this.props.data[i][6],
-                  this.props.data[i][7],
-                  this.props.data[i][8],
-                  this.props.data[i][9]]
+                  this.props[`${this.state.unitType}Data`][i][3],
+                  this.props[`${this.state.unitType}Data`][i][4], 
+                  this.props[`${this.state.unitType}Data`][i][5], 
+                  this.props[`${this.state.unitType}Data`][i][6],
+                  this.props[`${this.state.unitType}Data`][i][7],
+                  this.props[`${this.state.unitType}Data`][i][8],
+                  this.props[`${this.state.unitType}Data`][i][9]]
               })
           }
       }
@@ -162,19 +193,19 @@ class Unit extends React.Component {
       
     render() {
         let props = {
-            data: this.props.data,
+            data: this.props[`${this.state.unitType}Data`],
             unitGroup: this.state.unitGroup,
             getUnitGroup: this.getUnitGroup,
             getUnitList: this.getUnitList,
             getUnitName: this.getUnitName,
             unitList: this.state.unitList,
             techList: this.state.techList,
+            getUnitType: this.getUnitType
         }
         let statsText = ["Fire Off", "Fire Def", "Shock Off", "Shock Def", "Morale Off", "Morale Def", "Total"];
-        let stats = statsText.map(item => <td key={item}>{item}</td>);
+        let stats = statsText.map(item => <td key={item + Math.random()}>{item}</td>);
         let stats2 = this.state.statsList.map(item => <td key={item + Math.random()}>{item}</td>);
-
-
+        
       return (
         <div className='Unit'>
             <Input {...props}/>
