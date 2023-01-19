@@ -1,4 +1,3 @@
-import { waitFor } from '@testing-library/react';
 import React, { Component } from 'react';
 
 class Input extends React.Component {
@@ -65,83 +64,6 @@ class Input extends React.Component {
     }
   }
 
-class Stats extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            fireOff: 0,
-            fireDef: 0,
-            shockOff: 0,
-            shockDef: 0,
-            moraleOff: 0,
-            moraleDef: 0,
-            total: 0,
-            statsList: [],
-        };
-        this.getStats = this.getStats.bind(this)
-    };
-
-  
-
-    getStats() {
-        for (let i in this.props.data) {
-            if (this.props.data[i][2] == this.props.unitName) {
-              //console.log(this.props.data[i])
-                this.setState({
-                  fireOff: Number(this.props.data[i][3]),
-                  fireDef: Number(this.props.data[i][4]),
-                  shockOff: Number(this.props.data[i][5]),
-                  shockDef: Number(this.props.data[i][6]),
-                  moraleOff: Number(this.props.data[i][7]),
-                  moraleDef: Number(this.props.data[i][8]),
-                  total: Number(this.props.data[i][9])
-                }, function() {
-                  this.setState({
-                    statsList: [this.state.fireOff, this.state.fireDef, this.state.shockOff, this.state.shockDef,this.state.moraleOff,this.state.moraleDef,this.state.total]
-                  }, function() {
-
-                  })
-                })
-            }
-        }
-    };
-
-    shouldComponentUpdate(nextProps, nextState) {
-      if (nextProps.unitName !== this.props.unitName) {
-        return true;
-      }
-      else {
-        return false;
-      }
-    }
-
-    
-    componentDidUpdate() { 
-      this.getStats();
-    }
-    
-    render() {
-      let statsList = ["Fire Off", "Fire Def", "Shock Off", "Shock Def", "Morale Off", "Morale Def", "Total"];
-      let stats = statsList.map(item => <td key={item}>{item}</td>)
-      let stats2 = this.state.statsList.map(item => <td key={item + Math.random()}>{item}</td>)
-  
-      return (
-        <div className='table'>
-          <table>
-            <tbody>
-              <tr>
-                {stats}
-              </tr>
-              <tr>
-                {stats2}
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      )
-    }
-}
-
 class Infantry extends React.Component {
     constructor(props) {
       super(props);
@@ -150,11 +72,13 @@ class Infantry extends React.Component {
         unitName: "",
         techList: [],
         unitList: [],
+        statsList: []
       }
       this.getTechList = this.getTechList.bind(this);
       this.getUnitList = this.getUnitList.bind(this);
       this.getUnitGroup = this.getUnitGroup.bind(this);
       this.getUnitName = this.getUnitName.bind(this);
+      this.getStats = this.getStats.bind(this);
     }
 
     getUnitGroup(e) {
@@ -166,6 +90,8 @@ class Infantry extends React.Component {
     getUnitName(e) {
         this.setState({
             unitName: e
+        }, function() {
+          this.getStats()
         });
     }
 
@@ -215,6 +141,24 @@ class Infantry extends React.Component {
             this.getUnitName(this.state.unitList[0]);
         });
     }
+
+    getStats() {
+      for (let i in this.props.data) {
+          if (this.props.data[i][2] == this.state.unitName) {
+            console.log(this.props.data[i])
+              this.setState({
+                statsList: [
+                  this.props.data[i][3],
+                  this.props.data[i][4], 
+                  this.props.data[i][5], 
+                  this.props.data[i][6],
+                  this.props.data[i][7],
+                  this.props.data[i][8],
+                  this.props.data[i][9]]
+              })
+          }
+      }
+  };
       
     render() {
         let props = {
@@ -224,13 +168,28 @@ class Infantry extends React.Component {
             getUnitList: this.getUnitList,
             getUnitName: this.getUnitName,
             unitList: this.state.unitList,
-            unitName: this.state.unitName,
             techList: this.state.techList,
         }
+        let statsText = ["Fire Off", "Fire Def", "Shock Off", "Shock Def", "Morale Off", "Morale Def", "Total"];
+        let stats = statsText.map(item => <td key={item}>{item}</td>);
+        let stats2 = this.state.statsList.map(item => <td key={item + Math.random()}>{item}</td>);
+
+
       return (
         <div className='Infantry'>
             <Input {...props}/>
-            <Stats {...props}/>
+            <div className='table'>
+              <table>
+                <tbody>
+                  <tr>
+                    {stats}
+                  </tr>
+                  <tr>
+                    {stats2}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
         </div>
       )
     }
