@@ -1,13 +1,14 @@
 import './App.css';
 import React from 'react';
-import Infantry from './Infantry.js';
+import Unit from './Unit.js';
 
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      infData: []
+      infData: [],
+      cavData: []
     }
   };
 
@@ -37,7 +38,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>EU4 Unit Compare</h1>
-        <Infantry data={this.state.infData}/>
+        <Unit data={this.state.infData}/>
       </div>
     )
   }

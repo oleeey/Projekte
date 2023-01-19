@@ -25,7 +25,8 @@
 }
 
 table {
-    margin: 50px auto;
+    margin: 10px auto;
+    border-spacing: 15px;
 }
 
 

@@ -64,7 +64,7 @@ class Input extends React.Component {
     }
   }
 
-class Infantry extends React.Component {
+class Unit extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -176,7 +176,7 @@ class Infantry extends React.Component {
 
 
       return (
-        <div className='Infantry'>
+        <div className='Unit'>
             <Input {...props}/>
             <div className='table'>
               <table>
@@ -195,4 +195,4 @@ class Infantry extends React.Component {
     }
   }
 
-export default Infantry;
+export default Unit;
