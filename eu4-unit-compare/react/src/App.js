@@ -10,11 +10,12 @@ class App extends React.Component {
       infData: [],
       cavData: []
     }
+    this.getData = this.getData.bind(this);
   };
 
   // Verbindung mit dem Express Server, Daten anpassen für Anwendung
-  componentDidMount() {
-    fetch("http://localhost:5000/inf")
+  getData(name) {
+    fetch(`http://localhost:5000/${name}`)
     .then(res => res.json())
     .then(
       (result) => {
@@ -23,7 +24,7 @@ class App extends React.Component {
         result.data.map(item => newData.push(String(item).split(";")))
         
         this.setState({
-          infData: newData
+          [`${name}Data`]: newData
         });
       },
       (error) => {
@@ -34,11 +35,16 @@ class App extends React.Component {
     )
   }
 
+  componentDidMount() {
+    this.getData("inf");
+    this.getData("cav");
+  }
+
   render() {
     return (
       <div className="App">
         <h1>EU4 Unit Compare</h1>
-        <Unit data={this.state.infData}/>
+        <Unit infData={this.state.infData} cavData={this.state.cavData}/>
       </div>
     )
   }
