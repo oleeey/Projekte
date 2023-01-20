@@ -44,7 +44,10 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>EU4 Unit Compare</h1>
-        <Unit infData={this.state.infData} cavData={this.state.cavData}/>
+        <div className='container'>
+          <Unit infData={this.state.infData} cavData={this.state.cavData}/>
+          <Unit infData={this.state.infData} cavData={this.state.cavData}/>
+        </div>
       </div>
     )
   }

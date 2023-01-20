@@ -34,7 +34,7 @@ class Input extends React.Component {
         <form id='inputForm'>
           <div className='divSelect'>
             <label>Unit Type</label>
-            <select className='selectElem' onChange={this.getUnitType}>
+            <select onChange={this.getUnitType}>
               <option selected disabled>-</option>
               <option value={"inf"}>Infantry</option>
               <option value={"cav"}>Cavalry</option>
@@ -42,7 +42,7 @@ class Input extends React.Component {
           </div>
           <div className='divSelect'>
             <label>Unit Group</label>
-            <select className='selectElem' onChange={this.getUnitGroup}>
+            <select onChange={this.getUnitGroup}>
               <option selected disabled>-</option>
               <option>Aboriginal</option>
               <option>African</option>
@@ -62,13 +62,13 @@ class Input extends React.Component {
           </div>
           <div className='divSelect'>
             <label>Military Technology</label>
-            <select className='selectElem' onChange={this.getUnitList}>
+            <select onChange={this.getUnitList}>
               {techOptions}
             </select>
           </div>
           <div className='divSelect'>
             <label>Unit Name</label>
-            <select className='selectElem' onChange={this.getUnitName}>
+            <select onChange={this.getUnitName}>
               {unitOptions}
             </select>
           </div>
@@ -176,7 +176,7 @@ class Unit extends React.Component {
     getStats() {
       for (let i in this.props[`${this.state.unitType}Data`]) {
           if (this.props[`${this.state.unitType}Data`][i][2] == this.state.unitName) {
-            console.log(this.props[`${this.state.unitType}Data`][i])
+            //console.log(this.props[`${this.state.unitType}Data`][i])
               this.setState({
                 statsList: [
                   this.props[`${this.state.unitType}Data`][i][3],
