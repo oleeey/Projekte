@@ -1,3 +1,3 @@
 ## EU4 Unit Comparing Tool
 
-![Screenshot (162)](https://user-images.githubusercontent.com/117094162/212572335-65933f8f-e28a-400e-95c8-7664040ba740.png)
+![Screenshot (164)](https://user-images.githubusercontent.com/117094162/214154915-3f24dcf6-67d4-41a7-a5a2-e08b719e32b9.png)
