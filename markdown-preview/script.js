@@ -13,12 +13,14 @@
 
  function setInput() {
     let input = getInput();
-    console.log(input);
     for (let i = 1; i <= input.length; i++) {
         let line = input[i - 1];
-        let regex = /^#/g;
+        let regex = /^#+ /g;
         if (line.match(regex)) {
-            console.log(line)
+            let match = line.match(regex);
+            line = line.replace(match,"")
+            let tag = getTag(match[0].trim().length)
+            $(tag, {id: "p" + i}).text(line).appendTo($("#preview"))
         }
         else {
             $("<p>", {id: "p" + i}).text(line).appendTo($("#preview"))
@@ -30,6 +32,13 @@
     $("#preview").empty();
     setInput();
  }
+
+ function getTag(count) {
+   return `<h${count}>`;
+ }
+
+
+ 
 
 
 
