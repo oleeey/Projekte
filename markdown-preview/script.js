@@ -15,16 +15,11 @@
     let input = getInput();
     for (let i = 1; i <= input.length; i++) {
         let line = input[i - 1];
-        let regex = /^#+ /g;
-        if (line.match(regex)) {
-            let match = line.match(regex);
-            line = line.replace(match,"")
-            let tag = getTag(match[0].trim().length)
-            $(tag, {id: "p" + i}).text(line).appendTo($("#preview"))
-        }
-        else {
-            $("<p>", {id: "p" + i}).text(line).appendTo($("#preview"))
-        }
+        let tag = isHeader(line, i)[0];
+        line = isHeader(line, i)[1];
+        line = isCode(line);
+
+        $(tag).html(line).appendTo($("#preview"));
     }
  }
 
@@ -35,6 +30,25 @@
 
  function getTag(count) {
    return `<h${count}>`;
+ }
+
+ function isHeader(line, i) {
+    let regex = /^#+ /g;
+    let tag = "<p>";
+    if (line.match(regex)) {
+        let match = line.match(regex);
+        line = line.replace(match,"")
+        tag = getTag(match[0].trim().length)
+    }
+    return [tag, line];
+ }
+
+ function isCode(line ,i) {
+    let regex = /`(.*)`/g
+    if (line.match(regex)) {
+        line = line.replace(line.match(regex),`<span class='code'>${line.match(regex)}</span>`).replace(/`/g,"")
+    }
+    return line;
  }
 
 

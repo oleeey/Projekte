@@ -10,14 +10,17 @@
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <div id="div-editor">
+    <div id="editorWrap">
+        <div class="toolbar"></div>
         <textarea id="editor" type="text" rows="8" cols="50"># Welcome to my Markdown Previewer! 
 ## This is a sub-heading...
-### And here's some other cool stuff:</textarea>
+### And here's some other cool stuff:
+Heres some code, `<div></div>`, between 2 backticks.</textarea>
     </div>
 
-    <div id="preview">
-        
+    <div id="previewWrap">
+        <div class="toolbar"></div>
+        <div id="preview"></div>
     </div>
 </body>
 </html>
