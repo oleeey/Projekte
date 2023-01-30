@@ -18,27 +18,24 @@ function setInput() {
       let tag = isHeader(line, i)[0];
       line = isHeader(line, i)[1];
       let code = isCode(line)[1];
+      //console.log(code);
       line = isCode(line)[0];
 
       if (code && code.length > 0) {      
          code = code[0].replace(/\s/g,"")
          for (let i in line) {
             if (line[i] === code) {
-               $("<p>", {class: "code"}).text(line[i]).appendTo($("#preview"));
+
+               $("<p>", {class: "code"}).text(line[i].replace(/`/g,"")).appendTo($("#preview"));
             }
             else {
                $("<p>", {class: "codeWrapper"}).text(line[i]).appendTo($("#preview"));
             }
          }
-         
       }
-
       else {
          $(tag).html(line).appendTo($("#preview"));
       }
-      
-
-      
    }
 }
 
@@ -63,14 +60,15 @@ function isHeader(line) {
 }
 
 function isCode(line) {
-   let regex = /`(.*)`/g
-   let code = line.match(regex);
+   let regex = /`{1}([^`]+)`{1}/g
+   let code = "";
    if (line.match(regex)) {
-      //line = line.replace(line.match(regex),"");
+      code = line.match(regex)
       line = line.split(",");
       line = line.map(item => item.replace(/^\s/g,""))
    }
-
+  
+   console.log(code)
    return [line, code];
 }
 

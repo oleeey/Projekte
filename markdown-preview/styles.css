@@ -18,9 +18,9 @@
 .code {
     background-color: lightgreen;
     display: inline;
+    margin: 0 10px;
 }
 
 .codeWrapper {
     display: inline;
-    margin: 0 10px;
 }
