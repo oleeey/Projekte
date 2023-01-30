@@ -16,6 +16,11 @@
 }
 
 .code {
-    background-color: green;
+    background-color: lightgreen;
+    display: inline;
 }
 
+.codeWrapper {
+    display: inline;
+    margin: 0 10px;
+}
