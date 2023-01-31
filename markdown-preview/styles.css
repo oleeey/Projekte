@@ -24,3 +24,7 @@
 .codeWrapper {
     display: inline;
 }
+
+.multiCodeWrapper {
+    background-color: lightgreen;
+}

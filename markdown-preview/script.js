@@ -17,15 +17,13 @@ function setInput() {
       let line = input[i - 1];
       let tag = isHeader(line, i)[0];
       line = isHeader(line, i)[1];
-      let code = isCode(line)[1];
-      line = isCode(line)[0];
+      let code = isSpecial(line)[1];
+      line = isSpecial(line,i)[0];
 
       if (code && code.length > 0) {      
          code = code.replace(/\s/g,"");
          code = code.replace(/`/g,"");
-         console.log(code)
          for (let i in line) {
-            console.log(line[i])
             if (line[i].replace(/\s/g,"") === code) {
                $("<p>", {class: "code"}).text(line[i].replace(/`/g,"")).appendTo($("#preview"));
             }
@@ -34,6 +32,20 @@ function setInput() {
             }
          }
       }
+      /*
+      else if (line == "```") {
+         let codes = [];
+         for (let j = i; j < input.length - 1; j++) {
+            if (input[j] == "```") {
+               break;
+            }
+            codes.push(input[j])
+         }
+         i += codes.length;
+         $("<div>", {class: "multiCodeWrapper"}).appendTo($("#preview"));
+         codes.map(item => $("<p>", {class: "multiCode"}).text(item).appendTo($(".multiCodeWrapper")));
+      }
+      */
       else {
          $(tag).html(line).appendTo($("#preview"));
       }
@@ -60,26 +72,24 @@ function isHeader(line) {
    return [tag, line];
 }
 
-function isCode(line) {
-   let regex1 = /`.+`/g;
-
-   let regex2 = /^(`{3})/g;
+function isSpecial(line,i) {
+   let regex1 = /^[^`]*`[^`]+`[^`]*$/g;
 
    let code = "";
    if (line.match(regex1)) {
-      let count = 0;
-      for (let i in line.match(regex1)[0]) {
-         if (line.match(regex1)[0][i] == "`") {
-            count++;
-         }
-      }
-      if (count == 2) {
+      /*
+      schaut nochmal ob nur 2 Backticks sind, da sonst ein Teil vom Satz vor den Backticks auch im Variablen
+      "code" gespeichert wird 
+      */
          code = line.match(regex1)[0];
+         code = code.match(/`.+`/)[0];
          line = line.split("`");
          line = line.map(el => el.trim());
-      }
    }
-   //console.log(line)
+   else if (line == "```") {
+      input = getInput();
+      console.log(i)
+   }
    return [line, code];
 }
 

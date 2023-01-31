@@ -15,7 +15,17 @@
         <textarea id="editor" type="text" rows="8" cols="50"># Welcome to my Markdown Previewer! 
 ## This is a sub-heading...
 ### And here's some other cool stuff:
-Heres some code, `<div> </div>`, between 2 backticks.</textarea>
+Heres some code, `<div></div>`, between 2 backticks.
+
+```
+// this is multi-line code:
+
+function anotherExample(firstLine, lastLine) {
+  if (firstLine == '```' && lastLine == '```') {
+    return multiLineCode;
+  }
+}
+```</textarea>
     </div>
 
     <div id="previewWrap">
