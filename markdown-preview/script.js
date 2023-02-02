@@ -32,20 +32,17 @@ function setInput() {
             }
          }
       }
-      /*
       else if (line == "```") {
+         let count = 0;
          let codes = [];
          for (let j = i; j < input.length - 1; j++) {
-            if (input[j] == "```") {
-               break;
-            }
             codes.push(input[j])
+            count++;
          }
-         i += codes.length;
-         $("<div>", {class: "multiCodeWrapper"}).appendTo($("#preview"));
-         codes.map(item => $("<p>", {class: "multiCode"}).text(item).appendTo($(".multiCodeWrapper")));
+         i += count;
+         $("<div>", {class: "multiCodeWrapper"}).appendTo("#preview");
+         codes.map(item => $("<p>", {class: "multiCode"}).text(item).appendTo($(".multiCodeWrapper")))
       }
-      */
       else {
          $(tag).html(line).appendTo($("#preview"));
       }
@@ -85,10 +82,6 @@ function isSpecial(line,i) {
          code = code.match(/`.+`/)[0];
          line = line.split("`");
          line = line.map(el => el.trim());
-   }
-   else if (line == "```") {
-      input = getInput();
-      console.log(i)
    }
    return [line, code];
 }
