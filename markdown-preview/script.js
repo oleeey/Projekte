@@ -26,7 +26,7 @@ function setInput() {
          if (code.match(/https:/g)) {
             if (line[0] == "!") {
                line = line.filter(item => item !== "!");
-               $("<img>", {src: line[1]}).appendTo("#preview")
+               $("<img>", {src: line[1], alt: line[0]}).appendTo("#preview")
             }
             else {
                for (let i in line) {
