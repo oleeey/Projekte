@@ -20,28 +20,63 @@ function setInput() {
       let code = isSpecial(line)[1];
       line = isSpecial(line,i)[0];
 
-      if (code && code.length > 0) {      
+      if (code && code.length > 0) {    
          code = code.replace(/\s/g,"");
-         code = code.replace(/`/g,"");
-         for (let i in line) {
-            if (line[i].replace(/\s/g,"") === code) {
-               $("<p>", {class: "code"}).text(line[i].replace(/`/g,"")).appendTo($("#preview"));
+         let text = "";
+         if (code.match(/https:/g)) {
+            if (line[0] == "!") {
+               line = line.filter(item => item !== "!");
+               $("<img>", {src: line[1]}).appendTo("#preview")
             }
             else {
-               $("<p>", {class: "codeWrapper"}).text(line[i]).appendTo($("#preview"));
-            }
+               for (let i in line) {
+                  if (line[i] == line[line.indexOf(code) - 1]) {
+                     $("<a>", {class: "link", href: code, target:"_blank"}).text(line[i]).appendTo($("#preview"));
+                     line = line.filter(item => item !== code);
+                  }
+                  else {
+                     $("<p>", {class: "codeWrapper"}).text(line[i]).appendTo($("#preview"));
+                  }
+               }
          }
+         }
+         else {
+            if (code.match(/`.+`/g)) {
+               code = code.replace(/`/g,"");
+               text = "code";
+            }
+            else if (code.match(/\*.+\*/g)) {
+               code = code.replace(/\*/g,"")
+               text = "bold";
+            }
+            
+            for (let i in line) {
+               if (line[i].replace(/\s/g,"") === code) {
+                  $("<p>", {class: text}).text(line[i].replace(/`/g,"")).appendTo($("#preview"));
+               }
+               else {
+                  $("<p>", {class: "codeWrapper"}).text(line[i]).appendTo($("#preview"));
+               }
+            }
       }
+      }
+
+      else if (line.match(/>/g)) {
+         $("<blockquote>").text(line.replace(/>/g,"")).appendTo("#preview")
+      }
+      
       else {
          $(tag).html(line).appendTo($("#preview"));
       }
    }
+   
    let codes = input.join("\n").match(/(?<=```)(.*)(?=```)/gms)[0];
    codes = codes.split("\n");
    codes = codes.filter(item => item !== "");
-   console.log(codes)
-   $("<div>", {class: "multiCodeWrapper"}).appendTo($("#preview"))
+
+   $("<div>", {class: "multiCodeWrapper"}).appendTo("#preview")
    codes.map(item => $('p:contains("' + item + '")').appendTo($(".multiCodeWrapper")))
+   $("#preview p:contains(```)").empty();
 }
 
              
@@ -79,6 +114,16 @@ function isSpecial(line,i) {
          code = code.match(/`.+`/)[0];
          line = line.split("`");
          line = line.map(el => el.trim());
+   }
+   else if (line.match(/\*.+\*/g)) {
+         code = line.match(/\*.+\*/g)[0];
+         line = line.split("**");
+         //line = line.map(el => el.trim());
+   }
+   else if (line.match(/\[.+\]/g)) {
+      code = line.match(/\(.+\)/g)[0].replace(/\(|\)/g,"");
+      line = line.split(/\[|\]|\(|\)/g);
+      line = line.filter(item => item !== "");
    }
    return [line, code];
 }
