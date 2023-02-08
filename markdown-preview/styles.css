@@ -1,3 +1,15 @@
+:root {
+    --wrapper-color: #d9eef2;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #8dcbd8;
+}
+
 #editorWrap {
     margin: auto;
     max-width: 30%;
@@ -5,18 +17,37 @@
 
 #editor {
     width: 100%;
+    background-color: var(--wrapper-color);
 }
 
 #previewWrap {
     max-width: 40%;
     margin: 10px auto;
     border: 1px solid black;
-    padding: 10px;
     min-height: 100px;
+    background-color: var(--wrapper-color);
+}
+
+#preview {
+    padding: 15px;
+}
+
+.toolbar {
+    height: 25px;
+    background-color:#41a9be;
+    width: 100%;
+}
+
+#toolbar2 {
+    border-bottom: 1px solid black;
+}
+
+.toolbar p {
+    display: inline;
 }
 
 .code {
-    background-color: lightgreen;
+    background-color: white;
     display: inline;
     margin: 0 10px;
 }
@@ -26,7 +57,7 @@
 }
 
 .multiCodeWrapper {
-    background-color: lightgreen;
+    background-color: white;
 }
 
 .bold {
@@ -41,4 +72,9 @@ blockquote {
 
 img {
     max-width: 100%;
+}
+
+textarea {
+    resize: vertical;
+    border-top: 1px solid black;
 }
