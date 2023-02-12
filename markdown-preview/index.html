@@ -12,7 +12,11 @@
 <body>
     <div id="editorWrap">
         <div class="toolbar">
-          <p>Editor</p>
+          <div class="left">
+            <img src="pen.svg" alt="edit icon"/>
+            <p>Editor</p>
+          </div>
+          <img class="img-zoom" src="magnifying-glass-solid.svg" src="magnifying glass" />
         </div>
         <textarea id="editor" type="text" rows="8" cols="50"># Welcome to my Markdown Previewer! 
 ## This is a sub-heading...
@@ -39,7 +43,11 @@ And last but not least, let's not forget embedded images:
 
     <div id="previewWrap">
         <div class="toolbar" id="toolbar2">
-          <p>Previewer</p>
+          <div class="left">
+            <img src="book-solid.svg" alt="preview icon"/>
+            <p>Previewer</p>
+          </div>
+          <img class="img-zoom" src="magnifying-glass-solid.svg" src="magnifying glass" onclick="toggleMax(this)" role="button"/>
         </div>
         <div id="preview"></div>
     </div>

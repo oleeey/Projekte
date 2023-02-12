@@ -128,6 +128,10 @@ function isSpecial(line,i) {
    return [line, code];
 }
 
+function toggleMax(elem) {
+   if ($(".previewWrap"))
+};
+
 
 
 

@@ -8,6 +8,7 @@
 
 body {
     background-color: #8dcbd8;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
 #editorWrap {
@@ -33,9 +34,23 @@ body {
 }
 
 .toolbar {
-    height: 25px;
+    height: 30px;
     background-color:#41a9be;
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.toolbar img {
+    width: 20px;
+    margin-left: 10px;
 }
 
 #toolbar2 {
@@ -44,6 +59,7 @@ body {
 
 .toolbar p {
     display: inline;
+    font-weight: bold;
 }
 
 .code {
@@ -78,3 +94,9 @@ textarea {
     resize: vertical;
     border-top: 1px solid black;
 }
+
+.img-zoom:hover {
+    background-color: white;
+    cursor: pointer;
+}
+
