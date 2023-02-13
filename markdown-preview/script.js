@@ -128,9 +128,25 @@ function isSpecial(line,i) {
    return [line, code];
 }
 
-function toggleMax(elem) {
-   if ($(".previewWrap"))
+function toggleMax1() {
+   if (!$("#previewWrap").hasClass("minimized")) {
+      $("#previewWrap").addClass("minimized")
+      $("textarea").addClass("maximized")
+   }
+   else {
+      $("#previewWrap").removeClass("minimized");
+      $("textarea").removeClass("maximized");
+   }
 };
+ 
+function toggleMax2() {
+   if (!$("#editorWrap").hasClass("minimized")) {
+      $("#editorWrap").addClass("minimized")
+   }
+   else {
+      $("#editorWrap").removeClass("minimized");
+   }
+}  
 
 
 
