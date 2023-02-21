@@ -48,7 +48,7 @@ body {
     cursor: pointer;
 }
 
-.padItem:active {
+.padItem:active, .padItem.active {
     background-color: red;
 }
 

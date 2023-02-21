@@ -1,23 +1,90 @@
 $(document).ready(function() {
     $('#padItem1').on("click", function() {
-        playSound("./kick.mp3");
+      playSound("./kick.mp3");
       });
 
-    $("#padItem1").keypress(function(e) {
-      if (e.keyCode == 81) {
-        playSound("./kick.mp3");
-      }
+    $('#padItem2').on("click", function() {
+      playSound("./clap.mp3", 0.3);
     });
 
-    $('#padItem2').on("click", function() {
-      playSound("./clap.mp3");
+    $('#padItem3').on("click", function() {
+      playSound("./snare.mp3");
     });
+
+    $('#padItem4').on("click", function() {
+      playSound("./808.mp3");
+    });
+
+    $('#padItem5').on("click", function() {
+      playSound("./.mp3");
+    });
+
+    $('#padItem6').on("click", function() {
+      playSound("./.mp3");
+    });
+
+    $('#padItem7').on("click", function() {
+      playSound("./oof.mp3", 0.3);
+    });
+
+    $('#padItem8').on("click", function() {
+      playSound("./oof2.mp3");
+    });
+
+    $('#padItem9').on("click", function() {
+      playSound("./.mp3", 0.3);
+    });
+    
+
+    $(function() {
+      $(window).keypress(function(e) {
+          let key = e.which;
+          switch (key) {
+            case 113:
+              buttonAnimation("#padItem1");
+              break;
+            case 119:
+              buttonAnimation("#padItem2");
+              break;
+            case 101:
+              buttonAnimation("#padItem3");
+              break;
+            case 97:
+              buttonAnimation("#padItem4");
+              break;
+            case 115:
+              buttonAnimation("#padItem5");
+              break;
+            case 100:
+              buttonAnimation("#padItem6");
+              break;
+            case 121:
+              buttonAnimation("#padItem7");
+              break;
+            case 120:
+              buttonAnimation("#padItem8");
+              break;
+            case 99:
+              buttonAnimation("#padItem9");
+              break;
+          }  
+      });
+   });
 
  })
 
- function playSound(sound) {
+ function playSound(sound, volume = 0.5) {
     let audio = new Audio(sound);
-    audio.volume = 0.5;
+    audio.volume = volume;
     audio.play();
+ }
+
+ function buttonAnimation(item) {
+  $(item).click().toggleClass("active");
+  setTimeout(
+    function()
+    {
+      $(item).toggleClass("active");
+    }, 100);
  }
 
