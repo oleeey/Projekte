@@ -1,38 +1,38 @@
 $(document).ready(function() {
     $('#padItem1').on("click", function() {
-      playSound("./kick.mp3");
+      playSound("./sounds/kick.mp3");
       });
 
     $('#padItem2').on("click", function() {
-      playSound("./clap.mp3", 0.3);
+      playSound("./sounds/clap.mp3", 0.3);
     });
 
     $('#padItem3').on("click", function() {
-      playSound("./snare.mp3");
+      playSound("./sounds/snare.mp3");
     });
 
     $('#padItem4').on("click", function() {
-      playSound("./808.mp3");
+      playSound("./sounds/808.mp3");
     });
 
     $('#padItem5').on("click", function() {
-      playSound("./.mp3");
+      playSound("./sounds/donk.mp3");
     });
 
     $('#padItem6').on("click", function() {
-      playSound("./.mp3");
+      playSound("./sounds/hihat.mp3");
     });
 
     $('#padItem7').on("click", function() {
-      playSound("./oof.mp3", 0.3);
+      playSound("./sounds/oof.mp3", 0.3);
     });
 
     $('#padItem8').on("click", function() {
-      playSound("./oof2.mp3");
+      playSound("./sounds/oof2.mp3");
     });
 
     $('#padItem9').on("click", function() {
-      playSound("./.mp3", 0.3);
+      playSound("./sounds/cheeki.mp3");
     });
     
 
