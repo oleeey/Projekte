@@ -113,9 +113,15 @@ body {
     width: 50%;
     height: 100%;
     background-color: blue;
+    position: relative;
+    cursor: pointer;
 }
 
 .right {
+    float: right;
+}
 
+.left {
+    float: left;
 }
 

@@ -1,38 +1,25 @@
 $(document).ready(function() {
-    $('#padItem1').on("click", function() {
-      playSound("./sounds/kick.mp3", "Kick");
-      });
 
-    $('#padItem2').on("click", function() {
-      playSound("./sounds/clap.mp3", "Clap", 0.3);
-    });
+    btnClick("#padItem1", "./sounds/kick.mp3", "Kick");
+    btnClick("#padItem2", "./sounds/clap.mp3", "Clap", 0.3);
+    btnClick("#padItem3", "./sounds/snare.mp3", "Snare");
+    btnClick("#padItem4", "./sounds/808.mp3", "808");
+    btnClick("#padItem5", "./sounds/donk.mp3", "Hardbass Donk");
+    btnClick("#padItem6", "./sounds/hihat.mp3", "Closed Hi-Hat");
+    btnClick("#padItem7", "./sounds/oof.mp3", "Minecraft Oof", 0.3);
+    btnClick("#padItem8", "./sounds/oof2.mp3", "Roblox Oof");
+    btnClick("#padItem9", "./sounds/cheeki.mp3", "Cheeki Breeki", 0.3);
 
-    $('#padItem3').on("click", function() {
-      playSound("./sounds/snare.mp3", "Snare");
-    });
-
-    $('#padItem4').on("click", function() {
-      playSound("./sounds/808.mp3", "808");
-    });
-
-    $('#padItem5').on("click", function() {
-      playSound("./sounds/donk.mp3", "Hardbass Donk");
-    });
-
-    $('#padItem6').on("click", function() {
-      playSound("./sounds/hihat.mp3", "Closed Hi-Hat");
-    });
-
-    $('#padItem7').on("click", function() {
-      playSound("./sounds/oof.mp3", "Minecraft Oof", 0.3);
-    });
-
-    $('#padItem8').on("click", function() {
-      playSound("./sounds/oof2.mp3", "Roblox Oof");
-    });
-
-    $('#padItem9').on("click", function() {
-      playSound("./sounds/cheeki.mp3", "Cheeki Breeki", 0.3);
+    $('.select').on("click", function() {
+      if ($(".inner").hasClass("right")) {
+        $(".inner").addClass("left");
+        $(".inner").removeClass("right");
+      }
+      else {
+        $(".inner").addClass("right");
+        $(".inner").removeClass("left");
+      }
+      
     });
     
 
@@ -88,4 +75,10 @@ $(document).ready(function() {
       $(element).toggleClass("active");
     }, 100);
  }
+
+function btnClick(btnName, soundFile, soundName, volume) {
+  $(btnName).on("click", function() {
+    playSound(soundFile, soundName, volume);
+  });
+}
 
